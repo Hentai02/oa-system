@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.oasystem.mapper.EmployeeMapper">
+    <resultMap id="employeeResultMap" type="org.example.oasystem.model.Employee">
+        <id property="employeeId" column="employee_id"/>
+        <result property="name" column="name"/>
+        <result property="gender" column="gender" typeHandler="org.example.oasystem.model.GenderEnumTypeHandler"/>
+        <result property="birthDate" column="birth_date"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="position" column="position"/>
+        <result property="department" column="department"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="address" column="address"/>
+        <result property="education" column="education"/>
+        <result property="workExperience" column="work_experience"/>
+        <result property="skills" column="skills"/>
+        <result property="salary" column="salary"/>
+    </resultMap>
+
+    <select id="getEmployeeByConditions" resultMap="employeeResultMap">
+        SELECT employee_id, name, gender, birth_date, hire_date, position, department, phone, email, address,
+        education, work_experience, skills, salary
+        FROM employee
+        WHERE 1=1
+        <if test="employeeId != null">
+            AND employee_id = #{employeeId}
+        </if>
+        <if test="name != null">
+            AND name = #{name}
+        </if>
+        <if test="department != null">
+            AND department = #{department}
+        </if>
+    </select>
+
+
+</mapper>
