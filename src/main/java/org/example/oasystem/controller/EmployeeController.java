@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EmployeeController {
 
-    @Autowired
+
     private EmployeeService employeeService;
+
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
 
     @PostMapping("/login.do")
     public void login(){

@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeService {
 
 
-    private EmployeeMapper employeeMapper;
+    private final EmployeeMapper employeeMapper;
 
     @Autowired
     public EmployeeService(EmployeeMapper employeeMapper) {
