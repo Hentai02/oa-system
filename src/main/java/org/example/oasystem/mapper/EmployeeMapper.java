@@ -9,7 +9,7 @@ import java.util.List;
 @Mapper
 public interface EmployeeMapper {
 
-    List<Employee> getEmployeeByConditions(@Param("employeeId") Integer employeeId,
+    List<Employee> getEmployeeByConditions(@Param("id") Integer id,
                                            @Param("name") String name,
                                            @Param("department")String department);
 
@@ -17,5 +17,5 @@ public interface EmployeeMapper {
 
     Integer updateEmployee(Employee employee);
 
-    Integer deleteEmployee(@Param("employeeId") Integer employeeId);
+    Integer deleteEmployee(@Param("id") Integer id);
 }

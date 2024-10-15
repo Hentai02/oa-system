@@ -2,10 +2,22 @@ package org.example.oasystem.model;
 
 
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
+/*id：自增的主键，用于唯一标识每一位员工。
+name：员工的姓名，不能为空。
+gender：员工的性别，可以是 ENUM 类型（如：男、女）。
+birth_date：员工的出生日期，不能为空。
+hire_date：员工的入职日期，不能为空。
+position：员工的职位，选填。
+department：员工所在的部门，选填。
+phone：员工的联系电话，选填。
+email：员工的电子邮件，必须唯一。
+status：记录员工的状态，默认为“在职”。
+created_at：记录创建时间，用于追踪记录的创建时间。
+updated_at：记录最后更新时间，用于审计和数据管理。*/
 public class Employee {
 
-  private long employeeId;
+  private Integer id;
   private String name;
   private GenderEnum gender;
   private LocalDate birthDate;
@@ -15,18 +27,17 @@ public class Employee {
   private String phone;
   private String email;
   private String address;
-  private String education;
-  private String workExperience;
-  private String skills;
-  private double salary;
+  private EmployeeStatusEnum status;
+  private LocalDateTime createdAt;
+  private LocalDateTime updatedAt;
 
 
-  public long getEmployeeId() {
-    return employeeId;
+  public Integer getId() {
+    return id;
   }
 
-  public void setEmployeeId(long employeeId) {
-    this.employeeId = employeeId;
+  public void setId(Integer id) {
+    this.id = id;
   }
 
 
@@ -111,45 +122,36 @@ public class Employee {
   }
 
 
-  public String getEducation() {
-    return education;
+  public EmployeeStatusEnum getStatus() {
+    return status;
   }
 
-  public void setEducation(String education) {
-    this.education = education;
-  }
-
-
-  public String getWorkExperience() {
-    return workExperience;
-  }
-
-  public void setWorkExperience(String workExperience) {
-    this.workExperience = workExperience;
+  public void setStatus(EmployeeStatusEnum status) {
+    this.status = status;
   }
 
 
-  public String getSkills() {
-    return skills;
+  public LocalDateTime getCreatedAt() {
+    return createdAt;
   }
 
-  public void setSkills(String skills) {
-    this.skills = skills;
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 
 
-  public double getSalary() {
-    return salary;
+  public LocalDateTime getUpdatedAt() {
+    return updatedAt;
   }
 
-  public void setSalary(double salary) {
-    this.salary = salary;
+  public void setUpdatedAt(LocalDateTime updatedAt) {
+    this.updatedAt = updatedAt;
   }
 
   @Override
   public String toString() {
     return "Employee{" +
-            "employeeId=" + employeeId +
+            "id=" + id +
             ", name='" + name + '\'' +
             ", gender=" + gender +
             ", birthDate=" + birthDate +
@@ -159,10 +161,9 @@ public class Employee {
             ", phone='" + phone + '\'' +
             ", email='" + email + '\'' +
             ", address='" + address + '\'' +
-            ", education='" + education + '\'' +
-            ", workExperience='" + workExperience + '\'' +
-            ", skills='" + skills + '\'' +
-            ", salary=" + salary +
+            ", status=" + status +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
             '}';
   }
 }
