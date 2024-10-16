@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@Deprecated
 public class GenderEnumTypeHandler extends BaseTypeHandler<GenderEnum> {
 
     @Override

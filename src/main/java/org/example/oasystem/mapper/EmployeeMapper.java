@@ -9,13 +9,17 @@ import java.util.List;
 @Mapper
 public interface EmployeeMapper {
 
-    List<Employee> getEmployeeByConditions(@Param("id") Integer id,
-                                           @Param("name") String name,
-                                           @Param("department")String department);
-
     Integer insertEmployee(Employee employee);
-
-    Integer updateEmployee(Employee employee);
-
     Integer deleteEmployee(@Param("id") Integer id);
+    Integer updateEmployee(Employee employee);
+    List<Employee> getAllEmployee();
+    List<Employee> getEmployeeById(@Param("id") Integer id);
+    List<Employee> getEmployeeByName(@Param("name") String name);
+    List<Employee> getEmployeeByDepartment(@Param("department") String department);
+
+
+
+
+
+
 }

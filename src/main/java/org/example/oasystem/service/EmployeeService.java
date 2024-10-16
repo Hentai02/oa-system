@@ -20,10 +20,16 @@ public class EmployeeService {
     }
 
 
-    public List<Employee> getEmployeeByConditions(Integer id,
-                                                  String name,
-                                                  String department){
-        return employeeMapper.getEmployeeByConditions(id, name, department);
+    public List<Employee> getEmployeeById(Integer id){
+        return employeeMapper.getEmployeeById(id);
+    }
+
+    public List<Employee> getEmployeeByName(String name){
+        return employeeMapper.getEmployeeByName(name);
+    }
+
+    public List<Employee> getEmployeeByDepartment(String department){
+        return employeeMapper.getEmployeeByDepartment(department);
     }
 
     public Integer insertEmployee(Employee employee){
@@ -36,6 +42,10 @@ public class EmployeeService {
 
     public Integer deleteEmployee(Integer id){
         return employeeMapper.deleteEmployee(id);
+    }
+
+    public List<Employee> getAllEmployee(){
+        return employeeMapper.getAllEmployee();
     }
 
 //    public List<Employee> getAllEmployees() {

@@ -3,34 +3,22 @@ package org.example.oasystem.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-/*id：自增的主键，用于唯一标识每一位员工。
-name：员工的姓名，不能为空。
-gender：员工的性别，可以是 ENUM 类型（如：男、女）。
-birth_date：员工的出生日期，不能为空。
-hire_date：员工的入职日期，不能为空。
-position：员工的职位，选填。
-department：员工所在的部门，选填。
-phone：员工的联系电话，选填。
-email：员工的电子邮件，必须唯一。
-status：记录员工的状态，默认为“在职”。
-created_at：记录创建时间，用于追踪记录的创建时间。
-updated_at：记录最后更新时间，用于审计和数据管理。*/
+
 public class Employee {
 
-  private Integer id;
-  private String name;
-  private GenderEnum gender;
-  private LocalDate birthDate;
-  private LocalDate hireDate;
-  private String position;
-  private String department;
-  private String phone;
-  private String email;
-  private String address;
-  private EmployeeStatusEnum status;
-  private LocalDateTime createdAt;
-  private LocalDateTime updatedAt;
-
+  private Integer id;           // 员工的唯一标识符
+  private String name;          // 员工姓名
+  private String gender;        // 员工性别
+  private LocalDate birthDate;  // 出生日期
+  private LocalDate hireDate;   // 入职日期
+  private String position;      // 职位
+  private String department;    // 部门
+  private String phone;         // 联系电话
+  private String email;         // 电子邮件
+  private String address;       // 居住地址
+  private String status;        // 员工状态（如在职、离职等）
+  private LocalDateTime createdAt; // 记录创建时间
+  private LocalDateTime updatedAt; // 记录最后更新时间
 
   public Integer getId() {
     return id;
@@ -50,11 +38,11 @@ public class Employee {
   }
 
 
-  public GenderEnum getGender() {
+  public String getGender() {
     return gender;
   }
 
-  public void setGender(GenderEnum gender) {
+  public void setGender(String gender) {
     this.gender = gender;
   }
 
@@ -122,11 +110,11 @@ public class Employee {
   }
 
 
-  public EmployeeStatusEnum getStatus() {
+  public String getStatus() {
     return status;
   }
 
-  public void setStatus(EmployeeStatusEnum status) {
+  public void setStatus(String status) {
     this.status = status;
   }
 

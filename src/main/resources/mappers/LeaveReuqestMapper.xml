@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.oasystem.mapper.LeaveRequestMapper">
+    <resultMap id="leaveRequestResultMap" type="org.example.oasystem.model.LeaveRequest">
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="leaveType" column="leave_type"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="reason" column="reason"/>
+        <result property="status" column="status"/>
+        <result property="attachment" column="attachment"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <!-- 插入请假记录 -->
+    <insert id="insertLeaveRequest" parameterType="org.example.oasystem.model.LeaveRequest" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO leave_request (
+        employee_id, leave_type, start_date, end_date, reason, status, attachment
+        ) VALUES (
+        #{employeeId}, #{leaveType}, #{startDate}, #{endDate}, #{reason}, #{status}, #{attachment}
+        )
+    </insert>
+
+    <!-- 根据ID删除请假记录 -->
+    <delete id="deleteLeaveRequest" parameterType="Integer">
+        DELETE FROM leave_request WHERE id = #{id}
+    </delete>
+
+    <!-- 更新请假记录 -->
+    <update id="updateLeaveRequest" parameterType="org.example.oasystem.model.LeaveRequest">
+        UPDATE leave_request
+        SET employee_id = #{employeeId},
+        leave_type = #{leaveType},
+        start_date = #{startDate},
+        end_date = #{endDate},
+        reason = #{reason},
+        status = #{status},
+        attachment = #{attachment}
+        WHERE id = #{id}
+    </update>
+
+    <!-- 查询所有请假记录 -->
+    <select id="getAllLeaveRequest" resultMap="leaveRequestResultMap">
+        SELECT id, employee_id, leave_type, start_date, end_date, reason, status, attachment, created_at, updated_at
+        FROM leave_request
+    </select>
+
+    <!-- 根据ID查询请假记录 -->
+    <select id="getLeaveRequestById" resultMap="leaveRequestResultMap">
+        SELECT id, employee_id, leave_type, start_date, end_date, reason, status, attachment, created_at, updated_at
+        FROM leave_request
+        WHERE id = #{id}
+    </select>
+
+</mapper>

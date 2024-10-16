@@ -1,5 +1,6 @@
 package org.example.oasystem.model;
 
+@Deprecated
 public enum GenderEnum {
     MALE("男"),
     FEMALE("女");

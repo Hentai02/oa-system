@@ -6,7 +6,7 @@
     <resultMap id="employeeResultMap" type="org.example.oasystem.model.Employee">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="gender" column="gender" typeHandler="org.example.oasystem.model.GenderEnumTypeHandler"/>
+        <result property="gender" column="gender"/>
         <result property="birthDate" column="birth_date"/>
         <result property="hireDate" column="hire_date"/>
         <result property="position" column="position"/>
@@ -14,53 +14,32 @@
         <result property="phone" column="phone"/>
         <result property="email" column="email"/>
         <result property="address" column="address"/>
-        <result property="status" column="status" typeHandler="org.example.oasystem.model.EmployeeStatusEnumTypeHandler"/>
+        <result property="status" column="status"/>
         <result property="createdAt" column="created_at"/>
         <result property="updatedAt" column="updated_at"/>
     </resultMap>
-
-
-    <select id="getEmployeeByConditions" resultMap="employeeResultMap">
-        SELECT id, name, gender, birth_date, hire_date, position, department, phone, email, address,
-        status, created_at, updated_at
-        FROM employee
-        WHERE 1=1
-        <if test="id != null">
-            AND id = #{id}
-        </if>
-        <if test="name != null">
-            AND name = #{name}
-        </if>
-        <if test="department != null">
-            AND department = #{department}
-        </if>
-    </select>
-
-
-    <delete id="deleteEmployee" parameterType="Integer">
-        DELETE FROM employee
-        WHERE id = #{id}
-    </delete>
-
-
 
     <insert id="insertEmployee" parameterType="org.example.oasystem.model.Employee" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO employee (
         name, gender, birth_date, hire_date, position, department,
         phone, email, address, status
         ) VALUES (
-        #{name}, #{gender, typeHandler=org.example.oasystem.model.GenderEnumTypeHandler},
+        #{name}, #{gender},
         #{birthDate}, #{hireDate}, #{position}, #{department},
-        #{phone}, #{email}, #{address}, #{status,typeHandler=org.example.oasystem.model.EmployeeStatusEnumTypeHandler}
+        #{phone}, #{email}, #{address}, #{status}
         )
     </insert>
 
+    <delete id="deleteEmployee" parameterType="Integer">
+        DELETE FROM employee
+        WHERE id = #{id}
+    </delete>
 
     <update id="updateEmployee" parameterType="org.example.oasystem.model.Employee">
         UPDATE employee
         SET
         name = #{name},
-        gender = #{gender, typeHandler=org.example.oasystem.model.GenderEnumTypeHandler},
+        gender = #{gender},
         birth_date = #{birthDate},
         hire_date = #{hireDate},
         position = #{position},
@@ -68,13 +47,35 @@
         phone = #{phone},
         email = #{email},
         address = #{address},
-        status = #{status,typeHandler=org.example.oasystem.model.EmployeeStatusEnumTypeHandler}
+        status = #{status}
         WHERE id = #{id}
     </update>
 
+    <select id="getAllEmployee" resultMap="employeeResultMap">
+        SELECT id, name, gender, birth_date, hire_date, position, department, phone, email, address,
+        status, created_at, updated_at
+        FROM employee
+    </select>
 
+    <select id="getEmployeeById" resultMap="employeeResultMap">
+        SELECT id, name, gender, birth_date, hire_date, position, department, phone, email, address,
+        status, created_at, updated_at
+        FROM employee
+        WHERE id = #{id}
+    </select>
 
+    <select id="getEmployeeByName" resultMap="employeeResultMap">
+        SELECT id, name, gender, birth_date, hire_date, position, department, phone, email, address,
+        status, created_at, updated_at
+        FROM employee
+        WHERE name LIKE CONCAT('%', #{name}, '%')
+    </select>
 
-
+    <select id="getEmployeeByDepartment" resultMap="employeeResultMap">
+        SELECT id, name, gender, birth_date, hire_date, position, department, phone, email, address,
+        status, created_at, updated_at
+        FROM employee
+        WHERE department = #{department}
+    </select>
 
 </mapper>
