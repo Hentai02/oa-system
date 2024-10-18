@@ -4,9 +4,7 @@ import org.example.oasystem.model.BaseResponse;
 import org.example.oasystem.model.LeaveRequest;
 import org.example.oasystem.service.LeaveRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,8 +20,20 @@ public class LeaveRequestController {
     }
 
     @PostMapping("/insertLeaveRequest.do")
-    public BaseResponse<Void> insertLeaveRequest(LeaveRequest leaveRequest) {
+    public BaseResponse<Integer> insertLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
         leaveRequestService.insertLeaveRequest(leaveRequest);
+        return BaseResponse.success(leaveRequest.getId());
+    }
+
+    @PostMapping("/deleteLeaveRequest.do")
+    public BaseResponse<Void> deleteLeaveRequest(@RequestParam Integer id) {
+        leaveRequestService.deleteLeaveRequest(id);
+        return BaseResponse.success();
+    }
+
+    @PostMapping("/updateLeaveRequest.do")
+    public BaseResponse<Void> updateLeaveRequest(@RequestBody LeaveRequest leaveRequest) {
+        leaveRequestService.updateLeaveRequest(leaveRequest);
         return BaseResponse.success();
     }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.oasystem.mapper.SalaryRecordMapper">
+
+    <resultMap id="salaryRecordResultMap" type="org.example.oasystem.model.SalaryRecord">
+        <id property="id" column="id"/>
+        <result property="employeeId" column="employee_id"/>
+        <result property="salary" column="salary"/>
+        <result property="bonus" column="bonus"/>
+        <result property="deductions" column="deductions"/>
+        <result property="payDate" column="pay_date"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+    </resultMap>
+
+    <insert id="insertSalaryRecord" parameterType="org.example.oasystem.model.SalaryRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO salary_record (employee_id, salary, bonus, deductions, pay_date)
+        VALUES (#{employeeId}, #{salary}, #{bonus}, #{deductions}, #{payDate})
+    </insert>
+
+    <delete id="deleteSalaryRecord" parameterType="Integer">
+        DELETE FROM salary_record WHERE id = #{id}
+    </delete>
+
+    <update id="updateSalaryRecord" parameterType="org.example.oasystem.model.SalaryRecord">
+        UPDATE salary_record
+        SET salary = #{salary},
+        bonus = #{bonus},
+        deductions = #{deductions},
+        pay_date = #{payDate}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getAllSalaryRecord" resultMap="salaryRecordResultMap">
+        SELECT id, employee_id, salary, bonus, deductions, pay_date, created_at, updated_at
+        FROM salary_record
+    </select>
+
+    <select id="getSalaryRecordById" resultMap="salaryRecordResultMap">
+        SELECT id, employee_id, salary, bonus, deductions, pay_date, created_at, updated_at
+        FROM salary_record
+        WHERE id = #{id}
+    </select>
+
+</mapper>
